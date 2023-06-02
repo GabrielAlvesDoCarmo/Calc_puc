@@ -44,13 +44,15 @@ class MainActivity : AppCompatActivity() {
         }
         btnEquals.setOnClickListener {
             val isValueValid = binding.visorCalc.validateValueForCalc()
-            if (isValueValid) {
-                val numbersCalc = getVisorText().split(operator)
-                val firstNumber = numbersCalc.first().replace(",",".").toDouble()
-                val lastNumber = numbersCalc.last().replace(",",".").toDouble()
-                calculate(firstNumber, operator, lastNumber)
-            }
+            if (isValueValid) executeCalc()
         }
+    }
+
+    private fun executeCalc() {
+        val numbersCalc = getVisorText().split(operator)
+        val firstNumber = numbersCalc.first().replace(",", ".").toDouble()
+        val lastNumber = numbersCalc.last().replace(",", ".").toDouble()
+        calculate(firstNumber, operator, lastNumber)
     }
 
     private fun calculate(firstNumber: Double, operator: String, lastNumber: Double) {
@@ -59,19 +61,23 @@ class MainActivity : AppCompatActivity() {
                 val result = (lastNumber * firstNumber) / 100
                 binding.visorCalc.setValue(result)
             }
+
             Constants.DIVIDER -> {
-                if(firstNumber != 0.0){
+                if (firstNumber != 0.0) {
                     binding.visorCalc.setValue(firstNumber / lastNumber)
-                }else binding.visorCalc.setValue("Error")
+                } else binding.visorCalc.setValue("Error")
             }
+
             Constants.MULTIPLY -> {
                 val result = firstNumber * lastNumber
                 binding.visorCalc.setValue(result)
             }
+
             Constants.MINUS -> {
                 val result = firstNumber - lastNumber
                 binding.visorCalc.setValue(result)
             }
+
             Constants.PLUS -> {
                 val result = firstNumber + lastNumber
                 binding.visorCalc.setValue(result)
