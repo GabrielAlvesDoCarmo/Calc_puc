@@ -4,7 +4,7 @@
     <string name="more_and_minus">+/-</string>
     <string name="operator_percent">%</string>
     <string name="operator_divider">/</string>
-    <string name="operator_multiply">x</string>
+    <string name="operator_multiply">X</string>
     <string name="operator_minus">-</string>
     <string name="operator_add">+</string>
     <string name="operator_equals">=</string>

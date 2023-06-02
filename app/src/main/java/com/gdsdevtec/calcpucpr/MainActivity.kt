@@ -6,19 +6,11 @@ import com.gdsdevtec.calcpucpr.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private var operator: String = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        setupActivity()
-    }
-
-    private fun setupActivity() {
         setupListeners()
-        observer()
-    }
-
-    private fun observer() {
-
     }
 
     private fun setupListeners() {
@@ -28,31 +20,91 @@ class MainActivity : AppCompatActivity() {
 
     private fun operatorsListeners() = with(binding) {
         btnClearAc.setOnClickListener {
-            clearCalc()
+            visorCalc.clear()
         }
         btnPercent.setOnClickListener {
-
+            operator = btnPercent.getValue()
+            addExpressionValue(btnPercent.getValue())
         }
         btnDivider.setOnClickListener {
-
+            operator = btnDivider.getValue()
+            addExpressionValue(btnDivider.getValue())
         }
         btnMultiply.setOnClickListener {
-
+            operator = btnMultiply.getValue()
+            addExpressionValue(btnMultiply.getValue())
         }
         btnMinus.setOnClickListener {
-
+            operator = btnMinus.getValue()
+            addExpressionValue(btnMinus.getValue())
         }
         btnAdd.setOnClickListener {
-
+            operator = btnAdd.getValue()
+            addExpressionValue(btnAdd.getValue())
         }
         btnEquals.setOnClickListener {
-
+            val isValueValid = binding.visorCalc.validateValueForCalc()
+            if (isValueValid) {
+                val numbersCalc = getVisorText().split(operator)
+                val firstNumber = numbersCalc.first().replace(",",".").toDouble()
+                val lastNumber = numbersCalc.last().replace(",",".").toDouble()
+                calculate(firstNumber, operator, lastNumber)
+            }
         }
     }
 
-    private fun clearCalc() = with(binding) {
-        visorCalc.text = ""
+    private fun calculate(firstNumber: Double, operator: String, lastNumber: Double) {
+        when (operator) {
+            Constants.PERCENT -> {
+                val result = (lastNumber * firstNumber) / 100
+                binding.visorCalc.setValue(result)
+            }
+            Constants.DIVIDER -> {
+                if(firstNumber != 0.0){
+                    binding.visorCalc.setValue(firstNumber / lastNumber)
+                }else binding.visorCalc.setValue("Error")
+            }
+            Constants.MULTIPLY -> {
+                val result = firstNumber * lastNumber
+                binding.visorCalc.setValue(result)
+            }
+            Constants.MINUS -> {
+                val result = firstNumber - lastNumber
+                binding.visorCalc.setValue(result)
+            }
+            Constants.PLUS -> {
+                val result = firstNumber + lastNumber
+                binding.visorCalc.setValue(result)
+            }
+        }
     }
+
+    private fun addExpressionValue(value: String) {
+        when (value) {
+            Constants.PERCENT -> {
+                operator = value
+                binding.visorCalc.setValue(setExpression(value))
+            }
+
+            Constants.DIVIDER -> {
+                binding.visorCalc.setValue(setExpression(value))
+            }
+
+            Constants.MULTIPLY -> {
+                binding.visorCalc.setValue(setExpression(value))
+            }
+
+            Constants.MINUS -> {
+                binding.visorCalc.setValue(setExpression(value))
+            }
+
+            Constants.PLUS -> {
+                binding.visorCalc.setValue(setExpression(value))
+            }
+        }
+    }
+
+    private fun setExpression(value: String) = getVisorText().verifyExpressions(value)
 
     private fun numbersListeners() = with(binding) {
         btnOne.setOnClickListener {
@@ -95,8 +147,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getPoint(): String {
-        val actual = getVisorText()
-        val isContainsPoint = actual.contains(getString(R.string.number_point))
+        val isContainsPoint = getVisorText().contains(getString(R.string.number_point))
         return if (!isContainsPoint) getVisorText() + getString(R.string.number_point) else ""
     }
 
@@ -106,8 +157,7 @@ class MainActivity : AppCompatActivity() {
         visorCalc.setValue(newValue)
     }
 
-    private fun getVisorText(): String {
-        return binding.visorCalc.text.toString()
-    }
+    private fun getVisorText(): String = binding.visorCalc.text.toString()
+
 
 }
