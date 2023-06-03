@@ -34,14 +34,18 @@ jobs:
     needs:
       - build-Debug-Version
     runs-on: ubuntu-latest
-    environment: RELEASE
-    container:
-      image: androidsdk/android-30
+
     steps:
       - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: gradle
 
-      - name: Permission Gradle
-        run: chmod +x ./gradlew
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Release Version
         run: ./gradlew assembleRelease
@@ -55,18 +59,18 @@ jobs:
     needs:
       - build-Release-Version
     runs-on: ubuntu-latest
-    environment: PLAYSTORE
-    container:
-      image: androidsdk/android-30
+
     steps:
       - uses: actions/checkout@v3
-      - name: Setup Environment
-        env:
-          KEYSTORE_APP: ${{secrets.KEYSTORE}}
-          SERVICE_ACCOUNT_APP: ${{secrets.SERVICE_ACCOUNT}}
-        run: |
-          echo $KEYSTORE_APP | base64 -d > app/chat_keystore.jks
-          echo $SERVICE_ACCOUNT_APP | base64 -d > app/service_account_play_console.json
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
 
       - name: Deploy Alpha PlayStore
         run: |
