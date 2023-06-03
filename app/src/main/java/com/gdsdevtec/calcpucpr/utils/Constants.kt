@@ -1,4 +1,4 @@
-package com.gdsdevtec.calcpucpr
+package com.gdsdevtec.calcpucpr.utils
 
 object Constants {
     const val CALC_FOR_REGEX = "[\\d,]+[%/+-X][\\d,]+"

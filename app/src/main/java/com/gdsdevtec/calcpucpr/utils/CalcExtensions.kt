@@ -4,6 +4,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
+import com.gdsdevtec.calcpucpr.utils.Constants
 
 fun String.stringValid() = this.isNotEmpty() && this != "0"
 fun AppCompatTextView.isValueValid() = this.text.toString().isNotEmpty()
