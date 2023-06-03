@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: BUILD
     container:
-      image: androidsdk/android-30
+      image: androidsdk/android-33
     steps:
       - uses: actions/checkout@v3
 
