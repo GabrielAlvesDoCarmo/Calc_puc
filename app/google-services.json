@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "784841257366",
+    "project_id": "calc-pucpr",
+    "storage_bucket": "calc-pucpr.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784841257366:android:f6ce08561813c80ade6db7",
+        "android_client_info": {
+          "package_name": "com.gdsdevtec.calcpucpr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784841257366-p3g2tapoga8ucsi7ljqto6f906go1l2f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQ54YLpQFb41--lWCt7_e2H2T1lUrWASc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784841257366-p3g2tapoga8ucsi7ljqto6f906go1l2f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
