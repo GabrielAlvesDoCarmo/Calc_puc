@@ -19,4 +19,8 @@
     <string name="number_tree">3</string>
     <string name="number_zero">0</string>
     <string name="number_point">,</string>
+    <string name="id_admob_init_app_xml">id_anuncio_aqui</string>
+    <string name="id_admob_init_app_test_xml">ca-app-pub-3940256099942544/3419835294</string>
+    <string name="id_admob_init_app_manifest">ca-app-pub-2552033802090031~4494631829</string>
+
 </resources>

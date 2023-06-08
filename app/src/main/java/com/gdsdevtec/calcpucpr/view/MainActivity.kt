@@ -11,6 +11,7 @@ import com.gdsdevtec.calcpucpr.databinding.ActivityMainBinding
 import com.gdsdevtec.calcpucpr.getValue
 import com.gdsdevtec.calcpucpr.isValueValid
 import com.gdsdevtec.calcpucpr.setValue
+import com.gdsdevtec.calcpucpr.utils.showAdsFullScreen
 import com.gdsdevtec.calcpucpr.validateValueForCalc
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        showAdsFullScreen {
+            return@showAdsFullScreen
+        }
         setupListeners()
     }
 
