@@ -23,10 +23,9 @@ class AppOpenAdManager {
         }
         isLoadingAd = true
         val request = AdRequest.Builder().build()
-//            val id = if(BuildConfig.BUILD_TYPE == "debug") getString(R.string.id_admob_init_app_test_xml) else getString(R.string.id_admob_init_app_xml)
         AppOpenAd.load(
             context,
-            context.getString(R.string.id_admob_init_app_test_xml),
+            context.getString(R.string.id_admob_init_app_xml),
             request,
             AppOpenAd.APP_OPEN_AD_ORIENTATION_PORTRAIT,
             object : AppOpenAd.AppOpenAdLoadCallback() {
